@@ -4,9 +4,7 @@ const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
 module.exports = {
-    entry: {
-        main: './src/index.js'
-    },
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, './dist/js/'),
         filename: 'awesome.js',
@@ -16,8 +14,7 @@ module.exports = {
         overlay: true
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
@@ -53,7 +50,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx']        
+        extensions: ['*', '.js', '.jsx']
     },
     plugins: [
         new MiniCssExtractPlugin({

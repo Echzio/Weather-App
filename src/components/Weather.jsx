@@ -1,10 +1,18 @@
 import React from 'react';
 
-class Weather extends React.Component{
+class Weather extends React.Component {
+
     render() {
-        return(
+        return (
             <div>
-                Компонент с погодой
+                <p>Город: {this.props.city}</p>
+                <p>Страна: {this.props.country}</p>
+                <p>Восход солнца будет в : {this.props.sunrise}</p>
+                <p>Закат солнца в : {this.props.sunset}</p>
+                <p>Температура {this.props.temperature} по Цельсию</p>
+                <p>Максимальная температура составит {this.props.tempMax}</p>
+                <p>Минимальная температура будет {this.props.tempMin}</p>
+                <p>Ветер {this.props.wind} км/час</p>
             </div>
         )
     }
