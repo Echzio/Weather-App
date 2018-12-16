@@ -1,27 +1,23 @@
-//для путей
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
 
 module.exports = {
-    // вход
     entry: {
         main: './src/index.js'
     },
-    // выход
     output: {
         path: path.resolve(__dirname, './dist/js/'),
         filename: 'awesome.js',
-        // относительная ссылка на итоговый файл
         publicPath: 'dist/js/',
     },
     devServer: {
-        // для показа ошибки вне консоли
-        overlay: true,     
+        overlay: true
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
