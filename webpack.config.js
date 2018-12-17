@@ -11,7 +11,8 @@ module.exports = {
         publicPath: 'dist/js/',
     },
     devServer: {
-        overlay: true
+        overlay: true,
+        hot: true
     },
     module: {
         rules: [{
