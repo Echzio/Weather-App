@@ -1,2 +1,2 @@
 # Weather-App
-React Learn
+Creating a weather application to learn react
