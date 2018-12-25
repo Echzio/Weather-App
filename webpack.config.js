@@ -2,17 +2,19 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: ['@babel/polyfill', './src/index.js'],
     output: {
-        path: path.resolve(__dirname, './dist/js/'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'awesome.js',
-        publicPath: 'dist/js/',
+        publicPath: '',
     },
     devServer: {
         overlay: true,
-        hot: true
+        hot: true,
+        port: 9000
     },
     module: {
         rules: [{
@@ -55,7 +57,10 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '../css/style.css',
+            filename: 'css/style.css',
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
         }),
         new webpack.HotModuleReplacementPlugin()
     ]

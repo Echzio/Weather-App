@@ -5,7 +5,7 @@ class Weather extends React.Component {
     render() {
         return (
             <div>
-                {Boolean(this.props.city) && Boolean(this.props.country) &&
+                {Boolean(this.props.city) &&
                     <div>
                         <p>Город: {this.props.city}</p>
                         <p>Страна: {this.props.country}</p>
