@@ -17,39 +17,49 @@ module.exports = {
         port: 9000
     },
     module: {
-        rules: [{
+        rules: [
+
+            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: [{
+                    loader: 'babel-loader'
+                }]
             },
+
             {
                 test: /\.scss$/,
                 use: [{
-                    loader: 'style-loader'
-                }, {
-                    loader: MiniCssExtractPlugin.loader
-                }, {
-                    loader: 'css-loader',
-                    options: {
-                        sourceMap: true
+                        loader: 'style-loader'
+                    }, {
+                        loader: MiniCssExtractPlugin.loader
+                    }, {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                autoprefixer({
+                                    browsers: ['ie >=8', 'last 4 version']
+                                })
+                            ],
+                            sourceMap: true
+                        }
+                    }, {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     }
-                }, {
-                    loader: 'postcss-loader',
-                    options: {
-                        plugins: [
-                            autoprefixer({
-                                browsers: ['ie >=8', 'last 4 version']
-                            })
-                        ],
-                        sourceMap: true
-                    }
-                }, {
-                    loader: 'sass-loader',
-                    options: {
-                        sourceMap: true
-                    }
-                }]
-            }
+                ]
+            },
+                {
+                    test: /\.(png|jpg)$/,
+                    loader: 'url-loader'
+                }
         ]
     },
     resolve: {

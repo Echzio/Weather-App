@@ -1,14 +1,15 @@
 import React from 'react';
-
-class Info extends React.Component {
-    render() {
-        return (
-            <div>
-                <h2>Погодное приложение</h2>
-                <p>Узнайте погоду в Вашем городе</p>
-            </div>
-        )
-    }
+/*
+* Statless
+*/
+const Info = () => {
+    return (
+        <div>
+            <h1 className="title-container__title">Погодное приложение</h1>
+            <h3 className="title-container__subtitle">Узнайте погоду в Вашем городе</h3>
+        </div>
+    )
 }
+
 
 export default Info;

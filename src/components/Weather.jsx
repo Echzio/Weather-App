@@ -1,25 +1,24 @@
 import React from 'react';
-
-class Weather extends React.Component {
-
-    render() {
-        return (
-            <div>
-                {Boolean(this.props.city) &&
-                    <div>
-                        <p><b>Город:</b> {this.props.city}</p>
-                        <p><b>Страна:</b> {this.props.country}</p>
-                        <p><b>Восход солнца в</b> {this.props.sunrise}</p>
-                        <p><b>Закат солнца в</b> {this.props.sunset}</p>
-                        <p><b>Температура:</b> {this.props.temperature} градусов</p>
-                        <p><b>Максимальная температура: </b>{this.props.tempMax} градусов</p>
-                        <p><b>Минимальная температура: </b>{this.props.tempMin} градусов</p>
-                        <p>Ветер <b>{this.props.wind}</b> км/час</p>
-                    </div>
-                }
-            </div>
-        )
-    }
+/*
+* Statless
+*/
+const Weather = (props) => {
+    return (
+        <div className="weather__info">
+            <p className="weather__key">
+                {props.weather && <span className="weather__value">{props.weather} </span>}
+                {props.weatherDescription && <span className="weather__value">({props.weatherDescription})</span>}
+            </p>
+            {props.city && props.country && <p className="weather__key"><b>Город:</b> <span className="weather__value">{props.city}, {props.country}</span></p>}
+            {props.sunrise && <p className="weather__key"><b>Восход солнца в</b> <span className="weather__value">{props.sunrise}</span></p>}
+            {props.sunset && <p className="weather__key"><b>Закат солнца в</b> <span className="weather__value">{props.sunset}</span></p>}
+            {props.temperature && <p className="weather__key"><b>Температура:</b> <span className="weather__value">{props.temperature} градусов</span></p>}
+            {props.tempMax && <p className="weather__key"><b>Максимальная температура: </b><span className="weather__value">{props.tempMax} градусов</span></p>}
+            {props.tempMin && <p className="weather__key"><b>Минимальная температура: </b><span className="weather__value">{props.tempMin} градусов</span></p>}
+            {props.wind && <p className="weather__key">Ветер <span className="weather__value"><b>{props.wind}</b></span> км/час</p>}
+            {props.error && <p className="weather__error"><b>{props.error}</b></p>}
+        </div>
+    )
 }
 
 export default Weather;

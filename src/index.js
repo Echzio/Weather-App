@@ -2,6 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import { hot } from 'react-hot-loader';
 import './scss/style.scss';
+import './particles/particles';
 
 import App from './components/App';
 

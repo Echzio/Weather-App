@@ -8,6 +8,8 @@ const API_KEY = '15ba72b97e868a4af1652fafde0edb0b';
 class App extends React.Component {
 
     state = {
+        weather: '',
+        weatherDescription: '',
         temperature: '',
         tempMax: '',
         tempMin: '',
@@ -38,7 +40,6 @@ class App extends React.Component {
         }
     }
 
-
     getWeather = async (event) => {
         event.preventDefault();
 
@@ -47,11 +48,13 @@ class App extends React.Component {
 
         if (Boolean(city)) {
             if (Boolean(country)) {
-                const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
+                const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
                 const data = await api_call.json();
                 const sunManipulate = this.cleanDate(data.sys.sunrise, data.sys.sunset);
-
+                console.log(data);
                 this.setState({
+                    weather: data.weather[0].main,
+                    weatherDescription: data.weather[0].description,
                     temperature: data.main.temp,
                     tempMax: data.main.temp_max,
                     tempMin: data.main.temp_min,
@@ -64,31 +67,46 @@ class App extends React.Component {
                 });
 
             } else {
-                alert('Вы забыли указать страну!');
+                this.setState({
+                    error: 'Вы не указали страну'
+                })
             }
         } else {
-            alert('Ой, кажется вы забыли указать свой город');
+            this.setState({
+                error: 'Вы не указали город'
+            })
         }
     }
-
 
     render() {
         return (
             <div>
-                <Info />
-                <Form getWeather={this.getWeather} />
-                <Weather
-                    temperature={this.state.temperature}
-                    tempMax={this.state.tempMax}
-                    tempMin={this.state.tempMin}
-                    city={this.state.city}
-                    country={this.state.country}
-                    sunrise={this.state.sunrise}
-                    sunset={this.state.sunset}
-                    wind={this.state.wind}
-                    error={this.state.error}
-                />
+                <div className="wrapper">
+                    <div className="main">
+                        <div className="title-container">
+                            <Info />
+                        </div>
+
+                        <div className="form-container">
+                            <Form getWeather={this.getWeather} />
+                            <Weather
+                                weather={this.state.weather}
+                                weatherDescription={this.state.weatherDescription}
+                                temperature={this.state.temperature}
+                                tempMax={this.state.tempMax}
+                                tempMin={this.state.tempMin}
+                                city={this.state.city}
+                                country={this.state.country}
+                                sunrise={this.state.sunrise}
+                                sunset={this.state.sunset}
+                                wind={this.state.wind}
+                                error={this.state.error}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
+
         )
     }
 }
