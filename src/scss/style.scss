@@ -159,7 +159,7 @@ button:active {
             height: auto;
             border-radius: 0 0 25px 25px;
             min-height: 400px;
-            margin-bottom: 30px;
+
 
             .weather__info {
                 width: 100%;
@@ -171,7 +171,10 @@ button:active {
 
 @media (max-width: 767px) {
     .main {
+        height: auto;
         width: 100%;
+        margin-top: 125px;
+        margin-bottom: 20px;
         padding: 0 15px;
         box-shadow: none;
     }
