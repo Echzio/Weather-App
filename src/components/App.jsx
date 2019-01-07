@@ -3,11 +3,12 @@ import Info from './Info';
 import Form from './Form';
 import Weather from './Weather';
 
+
 const API_KEY = '15ba72b97e868a4af1652fafde0edb0b';
 
 class App extends React.Component {
 
-    state = {       
+    state = {
         weather: '',
         weatherDescription: '',
         temperature: '',
@@ -49,7 +50,7 @@ class App extends React.Component {
             if (Boolean(country)) {
                 const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
                 const data = await api_call.json();
-                
+
                 if (data.message) {
 
                     this.setState({
@@ -117,8 +118,9 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <div className="wrapper">
+                <div className="container">
                     <div className="main">
+
                         <div className="title-container">
                             <Info />
                         </div>
