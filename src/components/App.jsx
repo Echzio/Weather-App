@@ -7,7 +7,7 @@ const API_KEY = '15ba72b97e868a4af1652fafde0edb0b';
 
 class App extends React.Component {
 
-    state = {
+    state = {       
         weather: '',
         weatherDescription: '',
         temperature: '',
@@ -42,7 +42,6 @@ class App extends React.Component {
 
     getWeather = async (event) => {
         event.preventDefault();
-
         const city = event.target.elements.city.value;
         const country = event.target.elements.country.value;
 
@@ -50,29 +49,66 @@ class App extends React.Component {
             if (Boolean(country)) {
                 const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
                 const data = await api_call.json();
-                const sunManipulate = this.cleanDate(data.sys.sunrise, data.sys.sunset);
-                console.log(data);
-                this.setState({
-                    weather: data.weather[0].main,
-                    weatherDescription: data.weather[0].description,
-                    temperature: data.main.temp,
-                    tempMax: data.main.temp_max,
-                    tempMin: data.main.temp_min,
-                    city: data.name,
-                    country: data.sys.country,
-                    sunrise: sunManipulate.rise,
-                    sunset: sunManipulate.over,
-                    wind: data.wind.speed,
-                    error: ''
-                });
+                
+                if (data.message) {
 
+                    this.setState({
+                        weather: '',
+                        weatherDescription: '',
+                        temperature: '',
+                        tempMax: '',
+                        tempMin: '',
+                        city: '',
+                        country: '',
+                        sunrise: '',
+                        sunset: '',
+                        wind: '',
+                        error: 'город не найден в базе Open Weater Map. Попробуйте написать город на английском языке'
+                    })
+                }
+                else {
+                    const sunManipulate = this.cleanDate(data.sys.sunrise, data.sys.sunset);
+                    this.setState({
+                        weather: data.weather[0].main,
+                        weatherDescription: data.weather[0].description,
+                        temperature: data.main.temp,
+                        tempMax: data.main.temp_max,
+                        tempMin: data.main.temp_min,
+                        city: data.name,
+                        country: data.sys.country,
+                        sunrise: sunManipulate.rise,
+                        sunset: sunManipulate.over,
+                        wind: data.wind.speed,
+                        error: ''
+                    });
+                }
             } else {
                 this.setState({
+                    weather: '',
+                    weatherDescription: '',
+                    temperature: '',
+                    tempMax: '',
+                    tempMin: '',
+                    city: '',
+                    country: '',
+                    sunrise: '',
+                    sunset: '',
+                    wind: '',
                     error: 'Вы не указали страну'
                 })
             }
         } else {
             this.setState({
+                weather: '',
+                weatherDescription: '',
+                temperature: '',
+                tempMax: '',
+                tempMin: '',
+                city: '',
+                country: '',
+                sunrise: '',
+                sunset: '',
+                wind: '',
                 error: 'Вы не указали город'
             })
         }
@@ -88,7 +124,11 @@ class App extends React.Component {
                         </div>
 
                         <div className="form-container">
-                            <Form getWeather={this.getWeather} />
+                            <Form
+                                getWeather={this.getWeather}
+                                warning={this.state.warning}
+                                error={this.state.error}
+                            />
                             <Weather
                                 weather={this.state.weather}
                                 weatherDescription={this.state.weatherDescription}

@@ -15,7 +15,7 @@ const Weather = (props) => {
             {props.temperature && <p className="weather__key"><b>Температура:</b> <span className="weather__value">{props.temperature} градусов</span></p>}
             {props.tempMax && <p className="weather__key"><b>Максимальная температура: </b><span className="weather__value">{props.tempMax} градусов</span></p>}
             {props.tempMin && <p className="weather__key"><b>Минимальная температура: </b><span className="weather__value">{props.tempMin} градусов</span></p>}
-            {props.wind && <p className="weather__key">Ветер <span className="weather__value"><b>{props.wind}</b></span> км/час</p>}
+            {props.wind && <p className="weather__key"><b>Ветер <span className="weather__value">{props.wind}</span> км/час</b></p>}
             {props.error && <p className="weather__error"><b>{props.error}</b></p>}
         </div>
     )
