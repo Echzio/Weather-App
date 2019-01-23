@@ -15,17 +15,13 @@ const AppWithHot = hot(module)(App);
 /* preloader */
 const preloader = () => {
     const element = document.getElementById('preloader');
-    setTimeout(function () {
+    setTimeout(function() {
         element.classList.add('hidden');
-        setTimeout(function () {
+        setTimeout(function() {
             element.remove();
-        },
-            1000);
-
-    },
-        3000);
-
-}
+        }, 1000);
+    }, 3000);
+};
 document.addEventListener('DOMContentLoaded', preloader);
 render(<Preloader />, document.getElementById('preloader'));
 /* !preloader */

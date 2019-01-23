@@ -1,6 +1,6 @@
 import 'particles.js';
 
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-particlesJS.load('particles-js', './src/particles/particles.json', function () {
-  //  console.log('callback - particles.js config loaded');    
+particlesJS.load('particles-js', './src/particles/particles.json', function() {
+    //  console.log('callback - particles.js config loaded');
 });

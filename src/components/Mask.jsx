@@ -1,10 +1,7 @@
 import React from 'react';
 
 const Mask = () => {
-    return (
-        <div>
-        </div>
-    )
-}
+    return <div />;
+};
 
 export default Mask;
