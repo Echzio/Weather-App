@@ -128,6 +128,7 @@ class App extends React.Component {
                 sunset: '',
                 wind: '',
             });
+            
             setTimeout(() => {
                 this.setState({
                     loadingBarProgress: 0
