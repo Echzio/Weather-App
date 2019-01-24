@@ -54,8 +54,33 @@ class App extends React.Component {
                 fetch(
                     `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`,
                 )
-                    .then(response => response.json())
+                    .then(response => {
+                        if (response.status === 200) {
+                            return response.json();
+                        } else {
+                            this.setState({
+                                error: 'Город не найден, openweathermap СПАСИБО. Попробуйте еще раз и желательно на английском. Этот api слишком предирчив',
+                                weather: '',
+                                weatherDescription: '',
+                                temperature: '',
+                                tempMax: '',
+                                tempMin: '',
+                                city: '',
+                                country: '',
+                                sunrise: '',
+                                sunset: '',
+                                wind: '',
+                                buttonName: 'Узнать погоду'
+                            });
+                            setTimeout(() => {
+                                this.setState({
+                                    loadingBarProgress: 0,
+                                });
+                            }, 1000);
+                        }
+                    })
                     .then(data => {
+                        console.log(data);
                         if (data) {
                             const sunManipulate = this.cleanDate(data.sys.sunrise, data.sys.sunset);
                             this.setState({
@@ -71,27 +96,8 @@ class App extends React.Component {
                                 wind: data.wind.speed,
                                 error: '',
                                 buttonName: 'Узнать погоду',
-                                loadingBarProgress: 100
+                                loadingBarProgress: 100,
                             });
-                        } else {
-                            this.setState({
-                                error: 'город не найден в базе Open Weater Map. Попробуйте написать город на английском языке',
-                                weather: '',
-                                weatherDescription: '',
-                                temperature: '',
-                                tempMax: '',
-                                tempMin: '',
-                                city: '',
-                                country: '',
-                                sunrise: '',
-                                sunset: '',
-                                wind: '',
-                            });
-                            setTimeout(() => {
-                                this.setState({
-                                    loadingBarProgress: 0
-                                });
-                            }, 1000)
                         }
                     });
             } else {
@@ -110,9 +116,9 @@ class App extends React.Component {
                 });
                 setTimeout(() => {
                     this.setState({
-                        loadingBarProgress: 0
+                        loadingBarProgress: 0,
                     });
-                }, 1000)
+                }, 1000);
             }
         } else {
             this.setState({
@@ -128,20 +134,20 @@ class App extends React.Component {
                 sunset: '',
                 wind: '',
             });
-            
+
             setTimeout(() => {
                 this.setState({
-                    loadingBarProgress: 0
+                    loadingBarProgress: 0,
                 });
-            }, 1000)
+            }, 1000);
         }
     };
 
     updateData = value => {
         this.setState({
-            loadingBarProgress: value
-        })
-    }
+            loadingBarProgress: value,
+        });
+    };
 
     render() {
         return (
