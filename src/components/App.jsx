@@ -7,16 +7,18 @@ const API_KEY = '15ba72b97e868a4af1652fafde0edb0b';
 
 class App extends React.Component {
     state = {
-        weather: '',
-        weatherDescription: '',
-        temperature: '',
-        tempMax: '',
-        tempMin: '',
-        city: '',
-        country: '',
-        sunrise: '',
-        sunset: '',
-        wind: '',
+        main: {
+            weather: '',
+            weatherDescription: '',
+            temperature: '',
+            tempMax: '',
+            tempMin: '',
+            city: '',
+            country: '',
+            sunrise: '',
+            sunset: '',
+            wind: '',
+        },
         error: '',
         buttonName: 'Узнать погоду',
         loadingBarProgress: 0,
@@ -42,6 +44,20 @@ class App extends React.Component {
 
     getWeather = async event => {
         event.preventDefault();
+        this.setState({
+            main: {
+                weather: '',
+                weatherDescription: '',
+                temperature: '',
+                tempMax: '',
+                tempMin: '',
+                city: '',
+                country: '',
+                sunrise: '',
+                sunset: '',
+                wind: '',
+            },
+        });
         const city = event.target.elements.city.value;
         const country = event.target.elements.country.value;
 
@@ -59,18 +75,9 @@ class App extends React.Component {
                             return response.json();
                         } else {
                             this.setState({
-                                error: 'Город не найден, openweathermap СПАСИБО. Попробуйте еще раз и желательно на английском. Этот api слишком предирчив',
-                                weather: '',
-                                weatherDescription: '',
-                                temperature: '',
-                                tempMax: '',
-                                tempMin: '',
-                                city: '',
-                                country: '',
-                                sunrise: '',
-                                sunset: '',
-                                wind: '',
-                                buttonName: 'Узнать погоду'
+                                error:
+                                    'Город не найден, openweathermap СПАСИБО. Попробуйте еще раз и желательно на английском. Этот api слишком предирчив',
+                                buttonName: 'Узнать погоду',
                             });
                             setTimeout(() => {
                                 this.setState({
@@ -80,20 +87,21 @@ class App extends React.Component {
                         }
                     })
                     .then(data => {
-                        console.log(data);
                         if (data) {
                             const sunManipulate = this.cleanDate(data.sys.sunrise, data.sys.sunset);
                             this.setState({
-                                weather: data.weather[0].main,
-                                weatherDescription: data.weather[0].description,
-                                temperature: data.main.temp,
-                                tempMax: data.main.temp_max,
-                                tempMin: data.main.temp_min,
-                                city: data.name,
-                                country: data.sys.country,
-                                sunrise: sunManipulate.rise,
-                                sunset: sunManipulate.over,
-                                wind: data.wind.speed,
+                                main: {
+                                    weather: data.weather[0].main,
+                                    weatherDescription: data.weather[0].description,
+                                    temperature: data.main.temp,
+                                    tempMax: data.main.temp_max,
+                                    tempMin: data.main.temp_min,
+                                    city: data.name,
+                                    country: data.sys.country,
+                                    sunrise: sunManipulate.rise,
+                                    sunset: sunManipulate.over,
+                                    wind: data.wind.speed,
+                                },
                                 error: '',
                                 buttonName: 'Узнать погоду',
                                 loadingBarProgress: 100,
@@ -103,16 +111,6 @@ class App extends React.Component {
             } else {
                 this.setState({
                     error: 'Вы не указали страну',
-                    weather: '',
-                    weatherDescription: '',
-                    temperature: '',
-                    tempMax: '',
-                    tempMin: '',
-                    city: '',
-                    country: '',
-                    sunrise: '',
-                    sunset: '',
-                    wind: '',
                 });
                 setTimeout(() => {
                     this.setState({
@@ -123,16 +121,6 @@ class App extends React.Component {
         } else {
             this.setState({
                 error: 'Вы не указали город',
-                weather: '',
-                weatherDescription: '',
-                temperature: '',
-                tempMax: '',
-                tempMin: '',
-                city: '',
-                country: '',
-                sunrise: '',
-                sunset: '',
-                wind: '',
             });
 
             setTimeout(() => {
@@ -167,19 +155,7 @@ class App extends React.Component {
                                 buttonName={this.state.buttonName}
                                 updateData={this.updateData}
                             />
-                            <Weather
-                                weather={this.state.weather}
-                                weatherDescription={this.state.weatherDescription}
-                                temperature={this.state.temperature}
-                                tempMax={this.state.tempMax}
-                                tempMin={this.state.tempMin}
-                                city={this.state.city}
-                                country={this.state.country}
-                                sunrise={this.state.sunrise}
-                                sunset={this.state.sunset}
-                                wind={this.state.wind}
-                                error={this.state.error}
-                            />
+                            <Weather weather={this.state.main} error={this.state.error} />
                         </div>
                     </div>
                 </div>
