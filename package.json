@@ -41,8 +41,8 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "particles.js": "^2.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-hot-loader": "^4.6.5",
     "react-preloader-icon": "^0.2.0",
     "react-top-loading-bar": "^1.0.3"
