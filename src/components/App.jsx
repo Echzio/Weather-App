@@ -69,9 +69,13 @@ class App extends React.Component {
 
         fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`,
+          {
+            type: 'POST',
+            method: 'cors',
+          },
         )
           .then(response => {
-            if (response.status === 200) {
+            if (response.ok) {
               return response.json();
             } else {
               this.setState({

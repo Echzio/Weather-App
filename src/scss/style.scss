@@ -236,7 +236,7 @@ input:-webkit-autofill {
       height: 3rem;
       width: 3em;
 
-      &:after {
+      &::after {
         content: '';
         display: block;
         height: 1rem;
@@ -249,7 +249,7 @@ input:-webkit-autofill {
         animation: rotate 1s linear infinite;
         animation-delay: 0;
 
-        &:after {
+        &::after {
           animation: pulse 3s linear infinite;
         }
       }
@@ -258,7 +258,7 @@ input:-webkit-autofill {
         animation: rotate 1.1s linear infinite;
         animation-delay: 0.1s;
 
-        &:after {
+        &::after {
           animation: pulse 4s linear infinite;
         }
       }
@@ -267,7 +267,7 @@ input:-webkit-autofill {
         animation: rotate 1.2s linear infinite;
         animation-delay: 0.2s;
 
-        &:after {
+        &::after {
           animation: pulse 5s linear infinite;
         }
       }
