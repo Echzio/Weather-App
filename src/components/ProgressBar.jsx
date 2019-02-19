@@ -8,7 +8,7 @@ const ProgressBar = props => {
         progress={props.progress}
         height={5}
         color="#2581b2"
-        onLoaderFinished={() => props.updateData(0)}
+        onLoaderFinished={() => props.updateProgress(0)}
       />
     </div>
   );

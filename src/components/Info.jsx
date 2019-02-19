@@ -1,7 +1,5 @@
 import React from 'react';
-/*
- * Statless
- */
+
 const Info = () => {
   return (
     <div>
