@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Weather = props => {
-  console.log(props.weather);
   return (
     <div className="weather__info">
       <p className="weather__key">

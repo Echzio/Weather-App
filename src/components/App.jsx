@@ -4,6 +4,8 @@ import Info from './Info';
 import Form from './Form';
 import Weather from './Weather';
 import ProgressBar from './ProgressBar';
+import loop from './Loop';
+// loop();
 
 class App extends React.Component {
   state = {
@@ -68,21 +70,3 @@ class App extends React.Component {
 }
 
 export default hot(module)(App);
-
-// cleanDate = (...sun) => {
-//   let rise = new Date(sun[0] * 1000);
-//   let over = new Date(sun[1] * 1000);
-
-//   let riseHour = rise.getHours();
-//   let riseMin = `0 ${rise.getMinutes()}`;
-//   let riseTime = `${riseHour}ч. ${riseMin.substr(-2)}мин.`;
-
-//   let overHour = over.getHours();
-//   let overMin = `0 ${over.getMinutes()}`;
-//   let overTime = `${overHour}ч. ${overMin.substr(-2)}мин.`;
-
-//   return {
-//     rise: riseTime,
-//     over: overTime,
-//   };
-// };

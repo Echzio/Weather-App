@@ -7,21 +7,19 @@ const GetWeatherApi = async (city, country, data) => {
       .then(response => {
         if (response.ok) {
           return response.json();
-        } else {
-          return data({
-            loadingProgress: 0,
-          });
         }
       })
       .then(success => {
-        success['loadingProgress'] = 100;
-        return data(success);
+        if (success) {
+          success['loadingProgress'] = 100;
+          return data(success);
+        } else {
+          throw 'error';
+        }
       });
   } catch (e) {
+    console.log(true);
     console.log(e);
-    return data({
-      loadingProgress: 0,
-    });
   }
 };
 
