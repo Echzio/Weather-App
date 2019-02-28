@@ -9,7 +9,9 @@ class Form extends React.Component {
   };
 
   _Data = response => {
-    this.props.updateState(response);
+    if (response.weather) {
+      this.props.updateState(response);
+    }
     this.props.updateProgress(response.loadingProgress);
   };
 

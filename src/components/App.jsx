@@ -5,7 +5,7 @@ import Form from './Form';
 import Weather from './Weather';
 import ProgressBar from './ProgressBar';
 import loop from './Loop';
-// loop();
+//loop();
 
 class App extends React.Component {
   state = {

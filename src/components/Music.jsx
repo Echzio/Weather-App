@@ -6,44 +6,44 @@ audio.src = './src/audio/music.mp3';
 class Music extends React.Component {
   state = {
     name: 'свернуть',
-    state: false,
+    open: false,
   };
 
   ButtonClick = () => {
     /* music */
     let app = document.getElementById('app');
-    if (this.state.state) {
+    if (this.state.open) {
       this.setState(
         {
-          state: false,
+          open: false,
           name: 'свернуть',
         },
         () => {
-          this.playMusic(this.state.state);
+          // this.playMusic(this.state.state);
           app.style.display = 'block';
         },
       );
     } else {
       this.setState(
         {
-          state: true,
+          open: true,
           name: 'развернуть',
         },
         () => {
-          this.playMusic(this.state.state);
+          //  this.playMusic(this.state.state);
           app.style.display = 'none';
         },
       );
     }
   };
 
-  playMusic = props => {
-    if (props) {
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  };
+  // playMusic = props => {
+  //   if (props) {
+  //     audio.play();
+  //   } else {
+  //     audio.pause();
+  //   }
+  // };
 
   render() {
     return <button onClick={this.ButtonClick}>{this.state.name}</button>;

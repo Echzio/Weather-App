@@ -7,6 +7,8 @@ const GetWeatherApi = async (city, country, data) => {
       .then(response => {
         if (response.ok) {
           return response.json();
+        } else {
+          throw new Error();
         }
       })
       .then(success => {
@@ -14,12 +16,15 @@ const GetWeatherApi = async (city, country, data) => {
           success['loadingProgress'] = 100;
           return data(success);
         } else {
-          throw 'error';
+          throw new Error();
         }
       });
   } catch (e) {
-    console.log(true);
-    console.log(e);
+    let error = {
+      loadingProgress: 0,
+    };
+    data(error);
+    return data;
   }
 };
 
