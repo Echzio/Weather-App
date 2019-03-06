@@ -40,7 +40,29 @@ class App extends React.Component {
     this.setState({
       loadingBarProgress: value,
     });
+    switch (value) {
+      case 0:
+        this.setState({
+          buttonName: 'что-то не так, try again',
+        });
+        break;
+      case 50:
+        this.setState({
+          buttonName: 'подождите',
+        });
+        break;
+      case 100:
+        this.setState({
+          buttonName: 'узнать погоду',
+        });
+      default:
+        break;
+    }
   };
+
+  componentDidUpdate() {
+    document.title = this.state.buttonName;
+  }
 
   render() {
     return (
@@ -50,17 +72,19 @@ class App extends React.Component {
           updateProgress={this.updateProgress}
         />
         <div className="container">
-          <div className="main">
-            <div className="title-container">
-              <Info />
-            </div>
-            <div className="form-container">
-              <Form
-                updateState={this.updateState}
-                buttonName={this.state.buttonName}
-                updateProgress={this.updateProgress}
-              />
-              <Weather weather={this.state.main} />
+          <div className="wrapper">
+            <div className="main">
+              <div className="title-container">
+                <Info />
+              </div>
+              <div className="form-container">
+                <Form
+                  updateState={this.updateState}
+                  buttonName={this.state.buttonName}
+                  updateProgress={this.updateProgress}
+                />
+                <Weather weather={this.state.main} />
+              </div>
             </div>
           </div>
         </div>

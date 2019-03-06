@@ -7,20 +7,16 @@ import Music from './components/Music';
 import App from './components/App';
 import Preloader from './components/Preloader';
 
-/* preloader */
-const preloader = () => {
-  const element = document.getElementById('preloader');
-  setTimeout(function() {
-    element.classList.add('hidden');
+document.onreadystatechange = () => {
+  if (document.readyState === 'complete') {
+    document.getElementById('preloader').classList.add('hidden');
     setTimeout(function() {
-      element.remove();
+      document.getElementById('preloader').remove();
     }, 1000);
-  }, 3000);
+  }
 };
-document.addEventListener('DOMContentLoaded', preloader);
-render(<Preloader />, document.getElementById('preloader'));
-/* !preloader */
 
+render(<Preloader />, document.getElementById('preloader'));
 render(<App />, document.getElementById('app'));
 render(<Mask />, document.getElementById('mask'));
 render(<Music />, document.getElementById('music'));
