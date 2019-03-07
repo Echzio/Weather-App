@@ -19,7 +19,7 @@ class App extends React.Component {
       wind: '',
     },
     loadingBarProgress: 0,
-    buttonName: 'узнать погоду',
+    buttonName: '',
   };
 
   updateState = response => {
@@ -59,6 +59,10 @@ class App extends React.Component {
         break;
     }
   };
+
+  componentWillMount() {
+    document.title = `Weather App`;
+  }
 
   componentDidUpdate() {
     document.title = this.state.buttonName;

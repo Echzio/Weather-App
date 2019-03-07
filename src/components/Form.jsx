@@ -20,7 +20,7 @@ class Form extends React.Component {
       <form className="form__weather" onSubmit={this.GetWeather}>
         <input type="text" name="city" placeholder="Город..." />
         <input type="text" name="country" placeholder="Страна..." />
-        <button id="send">{this.props.buttonName}</button>
+        <button id="send">{this.props.buttonName ? this.props.buttonName : `узнать погоду`}</button>
       </form>
     );
   }
