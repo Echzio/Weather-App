@@ -1,7 +1,7 @@
 import React from 'react';
 
-let audio = new Audio();
-audio.src = './src/audio/music.mp3';
+//let audio = new Audio();
+//audio.src = './src/audio/music.mp3';
 
 class Music extends React.Component {
   state = {
@@ -12,29 +12,16 @@ class Music extends React.Component {
   ButtonClick = () => {
     /* music */
     let app = document.getElementById('app');
-    if (this.state.open) {
-      this.setState(
-        {
-          open: false,
-          name: 'свернуть',
-        },
-        () => {
-          // this.playMusic(this.state.state);
+    this.state.open
+      ? this.setState({ open: false, name: 'свернуть' }, () => {
           app.style.display = 'block';
-        },
-      );
-    } else {
-      this.setState(
-        {
-          open: true,
-          name: 'развернуть',
-        },
-        () => {
-          //  this.playMusic(this.state.state);
+        })
+      : this.setState({ open: true, name: 'развернуть' }, () => {
           app.style.display = 'none';
-        },
-      );
-    }
+        });
+
+    // this.playMusic(this.state.state);
+    //  this.playMusic(this.state.state);
   };
 
   // playMusic = props => {
