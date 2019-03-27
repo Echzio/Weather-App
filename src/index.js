@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import './scss/style.scss';
 import './particles/particles';
 import Mask from './components/Mask';
-import Music from './components/Music';
+import Button from './components/Button';
 import App from './components/App';
 import Preloader from './components/Preloader';
 
@@ -19,4 +19,4 @@ document.onreadystatechange = () => {
 render(<Preloader />, document.getElementById('preloader'));
 render(<App />, document.getElementById('app'));
 render(<Mask />, document.getElementById('mask'));
-render(<Music />, document.getElementById('music'));
+render(<Button />, document.getElementById('button'));
