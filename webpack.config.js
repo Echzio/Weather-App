@@ -71,23 +71,24 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
-        use: ['file-loader?name=fonts/[name].[ext]']
-      }, 
+        use: ['file-loader?name=fonts/[name].[ext]'],
+      },
     ],
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
   optimization: {
-    minimizer: [new TerserPlugin({
-      cache: true,
-        parallel: true,    
-    }
-)],
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+      }),
+    ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
+      filename: '[name].css',
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
