@@ -2,7 +2,8 @@
 Creating react weather application
 
 # Click to see
-
+<b>Russia ? VPN : ''</b>
+<br>
 [<img src="https://www.netlify.com/img/deploy/button.svg">](https://hungry-cray-8dc1fd.netlify.com/)
 
 # Status
