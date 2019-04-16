@@ -7,14 +7,20 @@ import Button from './components/Button';
 import App from './components/App';
 import Preloader from './components/Preloader';
 
-document.onreadystatechange = () => {
-  if (document.readyState === 'complete') {
-    document.getElementById('preloader').classList.add('hidden');
-    setTimeout(function() {
-      document.getElementById('preloader').remove();
-    }, 1000);
-  }
+function* Loader() {
+  yield document.getElementById('preloader').classList.add('hidden');
+  yield document.getElementById('preloader').remove();
+}
+
+const LoaderState = Loader();
+
+LoaderState.next();
+
+const ReadyPage = () => {
+  LoaderState.next();
 };
+
+document.addEventListener('load', ReadyPage);
 
 render(<Preloader />, document.getElementById('preloader'));
 render(<App />, document.getElementById('app'));
