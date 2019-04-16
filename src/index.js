@@ -14,13 +14,14 @@ function* Loader() {
 
 const LoaderState = Loader();
 
-LoaderState.next();
-
 const ReadyPage = () => {
   LoaderState.next();
+  document.getElementById('preloader').addEventListener('animationend', () => {
+    LoaderState.next();
+  });
 };
 
-document.addEventListener('load', ReadyPage);
+window.addEventListener('load', ReadyPage);
 
 render(<Preloader />, document.getElementById('preloader'));
 render(<App />, document.getElementById('app'));
