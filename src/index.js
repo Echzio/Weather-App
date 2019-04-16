@@ -6,19 +6,24 @@ import Mask from './components/Mask';
 import Button from './components/Button';
 import App from './components/App';
 import Preloader from './components/Preloader';
+const Preload = document.getElementById('preloader');
 
 function* Loader() {
-  yield document.getElementById('preloader').classList.add('hidden');
-  yield document.getElementById('preloader').remove();
+  yield Preload.classList.add('hidden');
+  yield Preload.remove();
 }
 
 const LoaderState = Loader();
 
 const ReadyPage = () => {
   LoaderState.next();
-  document.getElementById('preloader').addEventListener('animationend', () => {
-    LoaderState.next();
-  });
+  Preload.addEventListener(
+    'animationend',
+    () => {
+      LoaderState.next();
+    },
+    false,
+  );
 };
 
 window.addEventListener('load', ReadyPage);
