@@ -71,10 +71,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <ProgressBar
-          progress={this.state.loadingBarProgress}
-          updateProgress={this.updateProgress}
-        />
+        <ProgressBar progress={this.state.loadingBarProgress} />
         <div className="container">
           <div className="wrapper">
             <div className="main">

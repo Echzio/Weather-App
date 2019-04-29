@@ -1,23 +1,28 @@
 import React from 'react';
+import App from './App';
+import { unmountComponentAtNode, render } from 'react-dom';
 
 class Button extends React.Component {
   state = {
     open: true,
   };
 
+  StateApp = choose => {
+    choose
+      ? render(<App />, document.getElementById('app'))
+      : unmountComponentAtNode(document.getElementById('app'));
+  };
+
   ButtonClick = () => {
     this.setState(
-      ({ open }) => ({
-        open: !open,
-      }),
+      ({ open }) => ({ open: !open }),
       () => {
         if (this.state.open) {
           document.querySelector('#button button').innerText = 'свернуть';
-          document.getElementById('app').style.display = 'block';
         } else {
           document.querySelector('#button button').innerText = 'развернуть';
-          document.getElementById('app').style.display = 'none';
         }
+        this.StateApp(this.state.open);
       },
     );
   };
