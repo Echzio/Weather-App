@@ -20,6 +20,7 @@ class App extends React.Component {
     },
     loadingBarProgress: 0,
     buttonName: '',
+    vibration: false
   };
 
   updateState = response => {
@@ -45,6 +46,7 @@ class App extends React.Component {
         this.setState({
           buttonName: 'что-то не так, try again',
         });
+        this.VibrateActivate(700);
         break;
       case 50:
         this.setState({
@@ -55,13 +57,21 @@ class App extends React.Component {
         this.setState({
           buttonName: 'узнать погоду',
         });
+        this.VibrateActivate(100);
       default:
         break;
     }
   };
 
+  VibrateActivate = value => {
+    this.state.vibration && navigator.vibrate(value);
+  }
+
   componentWillMount() {
     document.title = `Weather App`;
+    if (window.navigator && window.navigator.vibrate) {
+      this.setState(({ vibration }) => ((!vibration)))
+    }
   }
 
   componentDidUpdate() {
