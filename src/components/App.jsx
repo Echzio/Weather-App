@@ -20,7 +20,7 @@ class App extends React.Component {
     },
     loadingBarProgress: 0,
     buttonName: '',
-    vibration: false
+    vibration: false,
   };
 
   updateState = response => {
@@ -65,12 +65,12 @@ class App extends React.Component {
 
   VibrateActivate = value => {
     this.state.vibration && navigator.vibrate(value);
-  }
+  };
 
   componentWillMount() {
     document.title = `Weather App`;
     if (window.navigator && window.navigator.vibrate) {
-      this.setState(({ vibration }) => ((!vibration)))
+      this.setState(({ vibration }) => ({ vibration: !vibration }));
     }
   }
 
