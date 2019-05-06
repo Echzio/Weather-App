@@ -4,8 +4,6 @@ import Info from './Info';
 import Form from './Form';
 import Weather from './Weather';
 import ProgressBar from './ProgressBar';
-import loop from './Loop';
-//loop();
 
 class App extends React.Component {
   state = {
@@ -57,7 +55,7 @@ class App extends React.Component {
         this.setState({
           buttonName: 'узнать погоду',
         });
-        this.VibrateActivate(100);
+        this.VibrateActivate(300);
       default:
         break;
     }
@@ -80,7 +78,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         <ProgressBar progress={this.state.loadingBarProgress} />
         <div className="container">
           <div className="wrapper">
@@ -99,7 +97,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }
