@@ -8,6 +8,7 @@ import App from './components/App';
 import Preloader from './components/Preloader';
 const Preload = document.getElementById('preloader');
 
+// This code is completely unnecessary and says "look, I know the generators!"
 function* Loader() {
   yield Preload.classList.add('hidden');
   yield Preload.remove();

@@ -5,6 +5,21 @@ import { unmountComponentAtNode, render } from 'react-dom';
 class Button extends React.Component {
   state = {
     open: true,
+    name: 'свернуть'
+  };
+
+  ButtonClick = (e) => {
+    this.setState(
+      ({ open }) => ({ open: !open }),
+      () => {
+        this.StateApp(this.state.open);
+        if (this.state.open) {
+          this.setState({ name: 'свернуть' })
+        } else {
+          this.setState({ name: 'развернуть' })
+        }
+      },
+    );
   };
 
   StateApp = choose => {
@@ -13,22 +28,8 @@ class Button extends React.Component {
       : unmountComponentAtNode(document.getElementById('app'));
   };
 
-  ButtonClick = () => {
-    this.setState(
-      ({ open }) => ({ open: !open }),
-      () => {
-        if (this.state.open) {
-          document.querySelector('#button button').innerText = 'свернуть';
-        } else {
-          document.querySelector('#button button').innerText = 'развернуть';
-        }
-        this.StateApp(this.state.open);
-      },
-    );
-  };
-
   render() {
-    return <button onClick={this.ButtonClick}>свернуть</button>;
+    return <button onClick={this.ButtonClick}>{this.state.name}</button>;
   }
 }
 
