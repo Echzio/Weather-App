@@ -9,7 +9,7 @@ module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'awesome.js',
+    filename: '[name].js',
     publicPath: '',
   },
   devServer: {
@@ -78,13 +78,22 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-  optimization: {
+   optimization: {
     minimizer: [
       new TerserPlugin({
         cache: true,
         parallel: true,
       }),
     ],
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   },
   plugins: [
     new MiniCssExtractPlugin({
