@@ -86,6 +86,9 @@ module.exports = {
       }),
     ],
     splitChunks: {
+      splitChunks: {
+        chunks: 'all',
+      },
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
