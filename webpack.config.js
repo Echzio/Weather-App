@@ -78,24 +78,24 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx'],
   },
-   optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-      }),
-    ],
-    splitChunks: {      
-      chunks: 'all',     
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all'
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+        }),
+      ],
+      splitChunks: {      
+        chunks: 'all',     
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
         }
       }
-    }
-  },
+    },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
