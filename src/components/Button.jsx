@@ -5,18 +5,18 @@ import { unmountComponentAtNode, render } from 'react-dom';
 class Button extends React.Component {
   state = {
     open: true,
-    name: 'свернуть'
+    name: 'свернуть',
   };
 
-  ButtonClick = (e) => {
+  ButtonClick = e => {
     this.setState(
       ({ open }) => ({ open: !open }),
       () => {
         this.StateApp(this.state.open);
         if (this.state.open) {
-          this.setState({ name: 'свернуть' })
+          this.setState({ name: 'свернуть' });
         } else {
-          this.setState({ name: 'развернуть' })
+          this.setState({ name: 'развернуть' });
         }
       },
     );

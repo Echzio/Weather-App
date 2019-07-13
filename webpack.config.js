@@ -15,7 +15,7 @@ module.exports = {
   devServer: {
     overlay: true,
     hot: true,
-    port: 9000,
+    port: 1234,
   },
   module: {
     rules: [
@@ -76,25 +76,28 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
-  },
-    optimization: {
-      minimizer: [
-        new TerserPlugin({
-          cache: true,
-          parallel: true,
-        }),
-      ],
-      splitChunks: {      
-        chunks: 'all',     
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all'
-          }
-        }
-      }
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
     },
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        parallel: true,
+      }),
+    ],
+    splitChunks: {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
