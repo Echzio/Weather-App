@@ -49,7 +49,7 @@ module.exports = {
             options: {
               plugins: [
                 postcssPresetEnv({
-                  state: 0,
+                  stage: 0,
                   autoprefixer: { grid: true },
                 }),
               ],
