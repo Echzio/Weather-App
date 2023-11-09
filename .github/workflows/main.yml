@@ -19,6 +19,9 @@ jobs:
           # then gh pr review --approve "$PR_URL"
           # else echo "PR already approved, skipping additional approvals to minimize emails/notification noise.";
           # fi
+          with:
+            env:
+              GH_TOKEN: ${{secrets.FOR_DEPSSS}}
       - name: dependabot activated
         run: dependabot
 
@@ -27,6 +30,6 @@ jobs:
       #   uses: dependabot/fetch-metadata@v1
       # - uses: actions/checkout@v4
 
-        env:
+        # env:
         #   PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.FOR_DEPSSS}}
+          # GH_TOKEN: ${{secrets.FOR_DEPSSS}}
