@@ -27,6 +27,6 @@ jobs:
       #   uses: dependabot/fetch-metadata@v1
       # - uses: actions/checkout@v4
 
-        # env:
+        env:
         #   PR_URL: ${{github.event.pull_request.html_url}}
-        #   GITHUB_TOKEN: ${{secrets.FOR_DEPSSS}}
+          GITHUB_TOKEN: ${{secrets.FOR_DEPSSS}}
