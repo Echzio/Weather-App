@@ -1,0 +1,20 @@
+name: security alerts
+on: pull_request_target
+
+permissions:
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
+
+jobs:
+  dependabot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1
+        with:
+          alert-lookup: true
+          compat-lookup: true
+          github-token: "${{ secrets.for_deps }}"
