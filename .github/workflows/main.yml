@@ -17,4 +17,4 @@ jobs:
         with:
           alert-lookup: true
           compat-lookup: true
-          github-token: "${{ secrets.for_deps }}"
+          github-token: "${{ secrets.FOR_DEPSSS }}"
