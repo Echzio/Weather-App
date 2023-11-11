@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: install depends
-        run: npm ci
+        run: npm install
       - uses: oke-py/npm-audit-action@v2
         with:
           audit_level: critical
